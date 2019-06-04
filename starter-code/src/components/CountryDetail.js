@@ -1,3 +1,5 @@
+
+/*
 <h1>France</h1>
               <table className="table">
                 <thead></thead>
@@ -29,3 +31,36 @@
                   </tr>
                 </tbody>
               </table>
+
+
+
+*/
+import React from 'react';
+import { myProjects } from './Projects';
+import Countries from './countries.json';
+import { Link } from 'react-router-dom';
+
+const CountryDetails = (props) => {
+  console.log(props)
+
+  const getCountry = (code) => {
+    const theCountry = oneCountry => {
+      return oneCountry.code === code;
+    }
+    return myCountries.find(theCountry)
+  };
+  
+  const { params } = props.match;
+  const foundProject = getProject(params.id, 10);
+   
+  return (
+    <div>
+      <h2>{ foundProject.name } <span style={{fontSize:"14px"}}>{ foundProject.year }</span></h2>
+      <h3>Used technologies: { foundProject.technologies }</h3>
+      <p>{ foundProject.description }</p>
+      <Link to='/projects'>Back</Link>
+    </div>
+  )
+}
+
+export default CountryDetails;
