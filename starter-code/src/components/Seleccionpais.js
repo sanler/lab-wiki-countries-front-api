@@ -3,22 +3,24 @@ import React from 'react';
 import Countries from '../countries.json';
 import { Link } from 'react-router-dom';
 
-const CountryDetail = (props) => {
+const SeleccionPais = (props) => {
   console.log(props)
 
-  const getCountry = (code) => {
+  const getCountry = (codigo) => {
     const theCountry = oneCountry => {
-      return oneCountry.cca3 === code;
+      return oneCountry.cca3 === codigo;
     }
     console.log(Countries);
     return Countries.find(theCountry)
   };
 
+  
+
   //const { params } = props.match;
-  const foundCountry = getCountry(props.code,10);
+  const foundCountry = getCountry(props.codigo,10);
   console.log(foundCountry.name.common);
   return (
-    <div>
+    <div className="col-7">
     <h1>{foundCountry.name.common}</h1>
     <table className="table">
               <thead></thead>
@@ -37,6 +39,8 @@ const CountryDetail = (props) => {
                   <td>Borders</td>
                   <td>
                     <ul>
+                    {foundCountry.borders.map((oneborder, index) =><li key={index}><Link  key={index} to={`/countries/${oneborder}`}>{getCountry(oneborder,10).name.common}</Link></li>)
+                         }
                       </ul>
                   </td>
                 </tr>
@@ -49,4 +53,4 @@ const CountryDetail = (props) => {
   )
 }
 
-export default CountryDetail;
+export default SeleccionPais;
