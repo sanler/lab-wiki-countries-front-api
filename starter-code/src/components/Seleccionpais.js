@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import { myProjects } from './Projects';
 import Countries from '../countries.json';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const SeleccionPais = (props) => {
-  console.log(props)
+class SeleccionPais extends Component{
 
-  const getCountry = (codigo) => {
-    const theCountry = oneCountry => {
-      return oneCountry.cca3 === codigo;
-    }
-    console.log(Countries);
-    return Countries.find(theCountry)
-  };
-
+  constructor(props){
+    super(props);
   
+    console.log(props.codigo);
+    this.state={
+      mycountry: []
+    }
+  }
+  componentDidMount(props) {   
+    console.log('jjjjj'+props.codigo);
 
-  //const { params } = props.match;
-  const foundCountry = getCountry(props.codigo,10);
-  console.log(foundCountry.name.common);
-  return (
+    axios.get(`http://206.189.7.127/countries/${props.codigo}`)
+    .then(response => {
+
+
+      console.log(response.data);
+        this.setState({mycountry: response.data})
+    })
+  }
+
+  render(){
+    return(
     <div className="col-7">
-    <h1>{foundCountry.name.common}</h1>
+    <h1>{this.state.mycountry.name.common}</h1>
     <table className="table">
               <thead></thead>
               <tbody>
                 <tr>
                   <td style={{width:'30%'}}>Capital</td>
-                  <td>{foundCountry.capital}</td>
+                  <td>{this.state.mycountry.capital}</td>
                 </tr>
                 <tr>
                   <td>Area</td>
-                  <td>{foundCountry.area} km
+                  <td>{this.state.mycountry.area} km
                     <sup>2</sup>
                   </td>
                 </tr>
@@ -39,7 +47,7 @@ const SeleccionPais = (props) => {
                   <td>Borders</td>
                   <td>
                     <ul>
-                    {foundCountry.borders.map((oneborder, index) =><li key={index}><Link  key={index} to={`/countries/${oneborder}`}>{getCountry(oneborder,10).name.common}</Link></li>)
+                    {this.state.mycountry.borders.map((oneborder, index) =><li key={index}><Link  key={index} to={`/countries/${oneborder}`}>l</Link></li>)
                          }
                       </ul>
                   </td>
@@ -47,10 +55,8 @@ const SeleccionPais = (props) => {
               </tbody>
             </table>
 
-
-  
-    </div>
-  )
+      </div>
+    );
+  }
 }
-
 export default SeleccionPais;

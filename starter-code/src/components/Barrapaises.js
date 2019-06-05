@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import Countries from '../countries.json';
 import { Link } from  'react-router-dom';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
 
 class BarraPaises extends Component{
+
     constructor(props){
         super(props);
       
         this.state={
-            mycountries: Countries
+            mycountries: []
         }
     }
-
-    
+    componentDidMount() {
+        console.log('HHHHHHHHHHH');
+        axios.get("http://206.189.7.127/countries/")
+        .then(response => {
+            this.setState({mycountries: response.data})
+        })
+    }
 
     render(){
-      console.log(this.state.code);
-
         return(
                         
          <div className="col-5" style={{ maxHeight: '90vh', overflow: 'scroll'}}>

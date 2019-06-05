@@ -7,7 +7,6 @@ import Barrapaises from './Barrapaises';
 import UnPais from './UnPais';
 import CountryDetail from './CountryDetail';
 import Seleccionpais from './Seleccionpais';
-
 import 'bootstrap/dist/css/bootstrap.css';
 
 

@@ -6,12 +6,12 @@ import Mynavbar from './Mynavbar';
 import Barrapaises from './Barrapaises';
 import UnPais from './UnPais';
 import CountryDetail from './CountryDetail';
-
 import 'bootstrap/dist/css/bootstrap.css';
 
 
 
 class Home extends Component{
+
 
     render(){
 
