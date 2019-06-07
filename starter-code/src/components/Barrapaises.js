@@ -10,17 +10,21 @@ class BarraPaises extends Component{
 
     constructor(props){
         super(props);
-      
+    
         this.state={
             mycountries: []
         }
     }
     componentDidMount() {
         console.log('HHHHHHHHHHH');
-        axios.get("http://206.189.7.127/countries/")
+        axios.get("http://localhost:3001/countries")
         .then(response => {
             this.setState({mycountries: response.data})
+            console.log(response.data);
         })
+
+
+
     }
 
     render(){

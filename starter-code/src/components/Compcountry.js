@@ -13,7 +13,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Compcountry = (props) => {
  
     const { params } = props.match;
-     
+     console.log(params.code);
+   
+
+
     return (
         <div>                    
         <Mynavbar/>
@@ -22,7 +25,7 @@ const Compcountry = (props) => {
           
           <div className="row">
             <Barrapaises/>
-            <Seleccionpais codigo={params.code}/>
+            <Seleccionpais codigo={params.code} />
           </div>
         </div>
       </div>
